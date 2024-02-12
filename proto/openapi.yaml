@@ -1,0 +1,170 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /api/v1/user/login:
+        post:
+            tags:
+                - AuthService
+            operationId: AuthService_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/.LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/.LoginResponse'
+    /api/v1/user/register:
+        post:
+            tags:
+                - AuthService
+            operationId: AuthService_Register
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/.RegisterRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/.RegisterResponse'
+    /api/v1/user/{code}:
+        get:
+            tags:
+                - UserService
+            operationId: UserService_GetUser
+            parameters:
+                - name: code
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/.GetUserResponse'
+        put:
+            tags:
+                - UserService
+            operationId: UserService_UpdateUser
+            parameters:
+                - name: code
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/.UpdateUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/.UpdateUserResponse'
+    /v1/hello:
+        post:
+            tags:
+                - GreeterService
+            operationId: GreeterService_SayHello
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/.HelloRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/.HelloResponse'
+components:
+    schemas:
+        .GetUserResponse:
+            type: object
+            properties:
+                name:
+                    type: string
+                email:
+                    type: string
+        .HelloRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+        .HelloResponse:
+            type: object
+            properties:
+                message:
+                    type: string
+        .LoginRequest:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+        .LoginResponse:
+            type: object
+            properties:
+                token:
+                    type: string
+                refreshToken:
+                    type: string
+        .RegisterRequest:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+                username:
+                    type: string
+        .RegisterResponse:
+            type: object
+            properties:
+                token:
+                    type: string
+                refreshToken:
+                    type: string
+        .UpdateUserRequest:
+            type: object
+            properties:
+                code:
+                    type: string
+                name:
+                    type: string
+                email:
+                    type: string
+        .UpdateUserResponse:
+            type: object
+            properties:
+                code:
+                    type: string
+tags:
+    - name: AuthService
+    - name: GreeterService
+    - name: UserService
